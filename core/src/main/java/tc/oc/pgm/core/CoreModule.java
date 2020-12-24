@@ -114,8 +114,12 @@ public class CoreModule implements MapModule {
           name = "Core " + serial;
           serialNumbers.put(owner, serial + 1);
         }
-
+        String mode = coreEl.getAttributeValue("mode");
         boolean modeChanges = XMLUtils.parseBoolean(coreEl.getAttribute("mode-changes"), false);
+        if (modeChanges = false && !mode.isEmpty()) {
+          throw new InvalidXMLException(
+              "mode-changes must be set to true to use the core's mode module.", coreEl);
+        }
         boolean showProgress = XMLUtils.parseBoolean(coreEl.getAttribute("show-progress"), false);
         boolean visible = XMLUtils.parseBoolean(coreEl.getAttribute("show"), true);
         Boolean required = XMLUtils.parseBoolean(coreEl.getAttribute("required"), null);
@@ -134,6 +138,7 @@ public class CoreModule implements MapModule {
                 region,
                 material,
                 leakLevel,
+                mode,
                 modeChanges,
                 showProgress);
         context.getFeatures().addFeature(coreEl, factory);

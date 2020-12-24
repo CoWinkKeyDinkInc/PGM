@@ -10,27 +10,35 @@ import org.bukkit.material.MaterialData;
 
 public class Mode {
 
+  private final @Nullable String id;
   private final MaterialData material;
   private final Duration after;
   private final @Nullable String name;
   private final Component componentName;
   private final Duration showBefore;
 
-  public Mode(final MaterialData material, final Duration after, Duration showBefore) {
-    this(material, after, null, showBefore);
+  public Mode(
+      final String id, final MaterialData material, final Duration after, Duration showBefore) {
+    this(id, material, after, null, showBefore);
   }
 
   public Mode(
+      final String id,
       final MaterialData material,
       final Duration after,
       final @Nullable String name,
       Duration showBefore) {
+    this.id = id;
     this.material = material;
     this.after = after;
     this.name = name;
     this.componentName =
         text(name != null ? name : getPreformattedMaterialName(), NamedTextColor.RED);
     this.showBefore = showBefore;
+  }
+
+  public String getId() {
+    return this.id;
   }
 
   public MaterialData getMaterialData() {

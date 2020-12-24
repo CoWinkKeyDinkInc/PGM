@@ -61,6 +61,7 @@ public class ObjectiveModesModule implements MapModule {
           throw new InvalidXMLException("No period has been specified", modeEl);
         }
 
+        String id = modeEl.getAttributeValue("id");
         MaterialData material =
             XMLUtils.parseBlockMaterialData(Node.fromRequiredAttr(modeEl, "material"));
         Duration after = TextParser.parseDuration(modeEl.getAttributeValue("after"));
@@ -85,7 +86,7 @@ public class ObjectiveModesModule implements MapModule {
                 "Already scheduled a mode for " + after.getSeconds() + "s", modeEl);
           }
         }
-        parsedModes.add(new Mode(material, after, name, showBefore));
+        parsedModes.add(new Mode(id, material, after, name, showBefore));
       }
 
       return new ObjectiveModesModule(parsedModes);

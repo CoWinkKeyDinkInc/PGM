@@ -30,6 +30,7 @@ public class DestroyableFactory extends ProximityGoalDefinition {
       Region region,
       Set<SingleMaterialMatcher> materials,
       double destructionRequired,
+      @Nullable String mode,
       boolean modeChanges,
       boolean showProgress,
       boolean sparks,

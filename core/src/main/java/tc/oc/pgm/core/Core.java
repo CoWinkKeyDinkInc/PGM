@@ -135,6 +135,10 @@ public class Core extends TouchableGoal<CoreFactory>
     return this.material;
   }
 
+  public String getMode() {
+    return this.definition.getMode();
+  }
+
   public FiniteBlockRegion getCasingRegion() {
     return this.casingRegion;
   }
