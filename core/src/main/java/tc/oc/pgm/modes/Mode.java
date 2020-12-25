@@ -17,13 +17,12 @@ public class Mode {
   private final Component componentName;
   private final Duration showBefore;
 
-  public Mode(
-      final String id, final MaterialData material, final Duration after, Duration showBefore) {
-    this(id, material, after, null, showBefore);
+  public Mode(final MaterialData material, final Duration after, Duration showBefore) {
+    this(null, material, after, null, showBefore);
   }
 
   public Mode(
-      final String id,
+      final @Nullable String id,
       final MaterialData material,
       final Duration after,
       final @Nullable String name,
@@ -35,10 +34,6 @@ public class Mode {
     this.componentName =
         text(name != null ? name : getPreformattedMaterialName(), NamedTextColor.RED);
     this.showBefore = showBefore;
-  }
-
-  public String getId() {
-    return this.id;
   }
 
   public MaterialData getMaterialData() {
@@ -59,6 +54,10 @@ public class Mode {
 
   public Duration getShowBefore() {
     return this.showBefore;
+  }
+
+  public @Nullable String getId() {
+    return this.id;
   }
 
   public @Nullable String getName() {

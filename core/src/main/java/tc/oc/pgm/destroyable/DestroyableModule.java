@@ -116,7 +116,7 @@ public class DestroyableModule implements MapModule {
             XMLUtils.parseBoolean(destroyableEl.getAttribute("mode-changes"), false);
         if (modeChanges = false && !mode.isEmpty()) {
           throw new InvalidXMLException(
-              "mode-changes must be set to true to use the mode module.", destroyableEl);
+              "mode-changes must be set to true to use the mode attribute.", destroyableEl);
         }
         boolean showProgress =
             XMLUtils.parseBoolean(destroyableEl.getAttribute("show-progress"), false);

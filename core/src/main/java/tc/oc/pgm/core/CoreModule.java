@@ -118,7 +118,7 @@ public class CoreModule implements MapModule {
         boolean modeChanges = XMLUtils.parseBoolean(coreEl.getAttribute("mode-changes"), false);
         if (modeChanges = false && !mode.isEmpty()) {
           throw new InvalidXMLException(
-              "mode-changes must be set to true to use the core's mode module.", coreEl);
+              "mode-changes must be set to true to use the mode attribute.", coreEl);
         }
         boolean showProgress = XMLUtils.parseBoolean(coreEl.getAttribute("show-progress"), false);
         boolean visible = XMLUtils.parseBoolean(coreEl.getAttribute("show"), true);

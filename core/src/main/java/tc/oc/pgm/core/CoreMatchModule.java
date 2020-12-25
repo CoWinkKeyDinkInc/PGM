@@ -154,9 +154,6 @@ public class CoreMatchModule implements MatchModule, Listener {
   @EventHandler(priority = EventPriority.MONITOR)
   public void onObjectiveModeSwitch(final ObjectiveModeChangeEvent event) {
     for (Core core : this.cores) {
-      // this getMode() thing doesn't return properly.
-      // why the fuck can't strings be treated normally in Java
-      // so it does return null, so why the fuck doesn't this work?
       if (core.isAffectedByModeChanges()) {
         core.replaceBlocks(event.getMode().getMaterialData());
       }
