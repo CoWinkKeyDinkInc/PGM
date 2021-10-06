@@ -615,6 +615,8 @@ public class MatchImpl implements Match {
     logger.fine("Checking for match finish");
     for (VictoryCondition condition : getVictoryConditions()) {
       logger.fine("Checking victory condition " + condition);
+      // do something here
+      // poggers
       if (condition.isCompleted(this)) {
         logger.fine("Condition " + condition + " is satisfied, ending match");
         finish(null);

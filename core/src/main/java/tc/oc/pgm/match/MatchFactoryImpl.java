@@ -264,6 +264,7 @@ public class MatchFactoryImpl implements MatchFactory, Callable<Match> {
       if (creator == null) {
         creator = new WorldCreator(worldName);
       }
+      // I think it's this damn thing right here
       final World world =
           PGM.get()
               .getServer()
