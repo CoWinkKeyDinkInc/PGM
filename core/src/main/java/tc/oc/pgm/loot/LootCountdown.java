@@ -29,12 +29,10 @@ public class LootCountdown extends MatchCountdown implements Comparable<LootCoun
     return null;
   }
 
-  // not applicable
   public boolean showBossBar() {
     return false;
   }
 
-  // not something useful
   @Override
   public int compareTo(@NotNull LootCountdown lootCountdown) {
     return 0;

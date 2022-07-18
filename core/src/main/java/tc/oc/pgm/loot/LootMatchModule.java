@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
-import org.apache.commons.lang.ArrayUtils;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
@@ -13,6 +12,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryHolder;
 import tc.oc.pgm.api.match.Match;
 import tc.oc.pgm.api.match.MatchModule;
 import tc.oc.pgm.api.match.MatchScope;
@@ -24,22 +24,6 @@ import tc.oc.pgm.filters.query.BlockQuery;
 
 @ListenerScope(MatchScope.RUNNING)
 public class LootMatchModule implements MatchModule, Listener {
-
-  // Things with inventories that can be kept inside.
-  // Storage entities (storage and hopper minecarts) currently don't work.
-  // Ender chests are always disabled.
-  private static final Material[] CONTAINERS = {
-    Material.CHEST,
-    Material.TRAPPED_CHEST,
-    Material.DISPENSER,
-    Material.DROPPER,
-    Material.HOPPER,
-    Material.BREWING_STAND,
-    Material.FURNACE,
-    Material.BEACON,
-    Material.STORAGE_MINECART,
-    Material.HOPPER_MINECART
-  };
   private final Match match;
   private final List<LootableDefinition> definitions;
   private final List<FillableCache> fillableCaches;
@@ -86,7 +70,8 @@ public class LootMatchModule implements MatchModule, Listener {
   @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
   public void onInventoryOpen(InventoryOpenEvent event) {
     Block clickedMaterial = event.getPlayer().getTargetBlock((Set<Material>) null, 5);
-    if (ArrayUtils.contains(CONTAINERS, clickedMaterial.getType())) {
+    // currently does not worth with chest/furnace/dropper minecarts
+    if (clickedMaterial.getState() instanceof InventoryHolder) {
       MatchPlayer matchPlayer = match.getPlayer(event.getPlayer());
       Inventory containerInventory = event.getInventory();
       for (LootableDefinition definition : definitions) {
